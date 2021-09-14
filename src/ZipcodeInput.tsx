@@ -18,7 +18,7 @@ const ZoneInput: FunctionComponent = () => {
       );
 
       const json = (await res.json()) as ZoneAPIResponse;
-      
+
       if (json.zone) {
         setError(false);
         setData(json);
@@ -27,24 +27,24 @@ const ZoneInput: FunctionComponent = () => {
         setData({} as ZoneAPIResponse);
       }
     })();
-  
+
     setZipcode(""); // clear zipcode input after submission
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setZipcode(e.target.value);
-  }
+  };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="zipcodeInput">Zipcode:&nbsp;</label>
-        <input 
+        <label htmlFor="zipcodeInput">Zipcode:</label>
+        <input
           className="zipcode-input"
           id="zipcodeInput"
           type="number"
           value={zipcode}
-          onChange={handleChange} 
+          onChange={handleChange}
           aria-controls="zoneInfo"
         />
         <input
@@ -56,7 +56,7 @@ const ZoneInput: FunctionComponent = () => {
       </form>
       <ZoneData {...data} error={error} />
     </div>
-  )
+  );
 };
 
 export default ZoneInput;

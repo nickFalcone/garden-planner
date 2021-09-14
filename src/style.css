@@ -1,6 +1,7 @@
 .zipcode-input {
   width: 38px;
   padding: 1px 5px;
+  margin: 0 10px;
 }
 
 /* Remove spinner on number input */
@@ -15,8 +16,4 @@
 /* Firefox */
 .zipcode-input[type=number] {
   -moz-appearance: textfield;
-}
-
-.zipcode-submit {
-  display: block;
 }
