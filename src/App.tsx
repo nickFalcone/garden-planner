@@ -6,7 +6,7 @@ import ZipcodeInput from "./ZipcodeInput";
 const App = () => {
   return (
     <div>
-      <Title title="Garden planner" />
+      <Title title="Garden zone planner" />
       <ZipcodeInput />
     </div>
   );

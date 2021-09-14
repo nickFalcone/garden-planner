@@ -10,12 +10,7 @@ const ZoneInput: FunctionComponent = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // check that we are provided a 5 digit zipcode
-    if (zipcode.length !== 5) {
-      setError(true);
-      setZipcode("");
-      return;
-    }
+    // TODO: add response to localStorage and lookup zipcode first before requesting from API
 
     void (async () => {
       const res = await fetch(
@@ -52,7 +47,12 @@ const ZoneInput: FunctionComponent = () => {
           onChange={handleChange} 
           aria-controls="zoneInfo"
         />
-        <input className="zipcode-submit" type="submit" value="Submit" />
+        <input
+          className="zipcode-submit"
+          type="submit"
+          value="Submit"
+          disabled={zipcode.length !== 5}
+        />
       </form>
       <ZoneData {...data} error={error} />
     </div>

@@ -1,5 +1,5 @@
 {
-  "name": "base-react-ts",
+  "name": "Garden zone planner",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nickFalcone/base-react-ts.git"
+    "url": "git+https://github.com/nickFalcone/garden-planner"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nickFalcone/base-react-ts/issues"
+    "url": "https://github.com/nickFalcone/garden-planner/issues"
   },
-  "homepage": "https://github.com/nickFalcone/base-react-ts#readme",
+  "homepage": "https://github.com/nickFalcone/garden-planner#readme",
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
