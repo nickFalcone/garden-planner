@@ -4,12 +4,8 @@ interface Props {
   title: string;
 }
 
-const Title: FunctionComponent<Props> = (props) => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-    </div>
-  );
+const Title: FunctionComponent<Props> = ({ title }) => {
+  return <h1>{title}</h1>
 };
 
 export default Title;
