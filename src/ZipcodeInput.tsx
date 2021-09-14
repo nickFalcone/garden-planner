@@ -1,13 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
-
-interface ZoneAPIResponse {
-  zipcode: string;
-  zone: string;
-  trange: string;
-  zonetitle: string;
-  rangemin: string;
-  rangemax: string;
-}
+import { ZoneAPIResponse } from "./ZoneAPIResponse";
+import ZoneData from "./ZoneData";
 
 const ZoneInput: FunctionComponent = () => {
   const [zipcode, setZipcode] = useState("");
@@ -16,13 +9,12 @@ const ZoneInput: FunctionComponent = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const getZoneData = async () => {
+    void (async () => {
       const res = await fetch(
         `https://c0bra.api.stdlib.com/zipcode-to-hardiness-zone/?zipcode=${zipcode}`
       );
 
       const json = (await res.json()) as ZoneAPIResponse;
-      console.log(json);
       
       if (json.zone) {
         setError(false);
@@ -31,9 +23,9 @@ const ZoneInput: FunctionComponent = () => {
         setError(true);
         setData({} as ZoneAPIResponse);
       }
+    })();
   
-    }
-    void getZoneData();
+    setZipcode(""); // clear zipcode input after submission
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +42,7 @@ const ZoneInput: FunctionComponent = () => {
         <input type="submit" value="Submit" />
       </form>
       {error && <p>Error retrieving climate zone data.</p>}
-      {data.zone && <h2>{data.zone}</h2>}
+      <ZoneData {...data} />
     </div>
   )
 };
