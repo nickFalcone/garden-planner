@@ -10,7 +10,14 @@ const ZoneInput: FunctionComponent = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // TODO: add response to localStorage and lookup zipcode first before requesting from API
+    // avoid a network request if we have a matching zipcode response stored
+    const localData = localStorage.getItem(zipcode);
+    if (localData) {
+      setError(false);
+      setData(JSON.parse(localData));
+      setZipcode(""); // clear zipcode input after submission
+      return;
+    }
 
     void (async () => {
       const res = await fetch(
@@ -22,6 +29,7 @@ const ZoneInput: FunctionComponent = () => {
       if (json.zone) {
         setError(false);
         setData(json);
+        localStorage.setItem(json.zipcode, JSON.stringify(json));
       } else {
         setError(true);
         setData({} as ZoneAPIResponse);
