@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useEffect } from "react";
 import { ZoneAPIResponse } from "./ZoneAPIResponse";
 import ZoneData from "./ZoneData";
 
@@ -7,8 +7,18 @@ const ZoneInput: FunctionComponent = () => {
   const [data, setData] = useState({} as ZoneAPIResponse);
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    // handle case of a refresh, where the zipcode response was already stored
+    const ACTIVE_ZIPCODE = localStorage.getItem("ACTIVE_ZIPCODE");
+    if (ACTIVE_ZIPCODE) {
+      const localData = localStorage.getItem(ACTIVE_ZIPCODE);
+      if (localData) setData(JSON.parse(localData));
+    }
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    localStorage.setItem("ACTIVE_ZIPCODE", zipcode);
 
     // avoid a network request if we have a matching zipcode response stored
     const localData = localStorage.getItem(zipcode);
