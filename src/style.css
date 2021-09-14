@@ -1,0 +1,22 @@
+.zipcode-input {
+  width: 38px;
+  padding: 1px 5px;
+}
+
+/* Remove spinner on number input */
+
+/* Chrome, Safari, Edge, Opera */
+.zipcode-input::-webkit-outer-spin-button,
+.zipcode-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.zipcode-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.zipcode-submit {
+  display: block;
+}

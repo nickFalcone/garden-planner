@@ -9,6 +9,14 @@ const ZoneInput: FunctionComponent = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // check that we are provided a 5 digit zipcode
+    if (zipcode.length !== 5) {
+      setError(true);
+      setZipcode("");
+      return;
+    }
+
     void (async () => {
       const res = await fetch(
         `https://c0bra.api.stdlib.com/zipcode-to-hardiness-zone/?zipcode=${zipcode}`
@@ -35,14 +43,18 @@ const ZoneInput: FunctionComponent = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Zipcode:&nbsp;
-          <input type="number" value={zipcode} onChange={handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+        <label htmlFor="zipcodeInput">Zipcode:&nbsp;</label>
+        <input 
+          className="zipcode-input"
+          id="zipcodeInput"
+          type="number"
+          value={zipcode}
+          onChange={handleChange} 
+          aria-controls="zoneInfo"
+        />
+        <input className="zipcode-submit" type="submit" value="Submit" />
       </form>
-      {error && <p>Error retrieving climate zone data.</p>}
-      <ZoneData {...data} />
+      <ZoneData {...data} error={error} />
     </div>
   )
 };

@@ -5,4 +5,5 @@ export interface ZoneAPIResponse {
   zonetitle: string;
   rangemin: string;
   rangemax: string;
+  error: boolean;
 }
